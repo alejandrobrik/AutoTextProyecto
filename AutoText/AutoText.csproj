@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29876F09-47F2-4C5E-94CF-D0BA49ABC5E4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AutoText</RootNamespace>
+    <AssemblyName>AutoText</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>d:\Downloads\1\publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.5.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Label="SlowCheetah">
+    <SlowCheetahToolsPath>$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\..\packages\SlowCheetah.2.5.14\tools\))</SlowCheetahToolsPath>
+    <SlowCheetah_EnableImportFromNuGet Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='' ">true</SlowCheetah_EnableImportFromNuGet>
+    <SlowCheetah_NuGetImportPath Condition=" '$(SlowCheetah_NuGetImportPath)'=='' ">$([System.IO.Path]::GetFullPath( $(MSBuildProjectDirectory)\Properties\SlowCheetah\SlowCheetah.Transforms.targets ))</SlowCheetah_NuGetImportPath>
+    <SlowCheetahTargets Condition=" '$(SlowCheetah_EnableImportFromNuGet)'=='true' and Exists('$(SlowCheetah_NuGetImportPath)') ">$(SlowCheetah_NuGetImportPath)</SlowCheetahTargets>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="KellermanSoftware.Compare-NET-Objects, Version=3.5.0.0, Culture=neutral, PublicKeyToken=d970ace04cc85217, processorArchitecture=MSIL">
+      <HintPath>..\packages\CompareNETObjects.3.05.0.0\lib\net40\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MoreLinq, Version=1.4.18916.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.1.4.0\lib\net35\MoreLinq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\CommonConstants.cs" />
+    <Compile Include="Constants\ConfigConstants.cs" />
+    <Compile Include="Engine\AutotextExpression.cs" />
+    <Compile Include="Engine\AutotextExpressionParameter.cs" />
+    <Compile Include="Engine\AutotextInput.cs" />
+    <Compile Include="Engine\AutotextMatcher.cs" />
+    <Compile Include="Engine\AutotextMatchEventArgs.cs" />
+    <Compile Include="Engine\AutotextRuleExecution.cs" />
+    <Compile Include="Engine\AutotextRuleMatchParameters.cs" />
+    <Compile Include="Engine\GraphicsExtension.cs" />
+    <Compile Include="Engine\MacrosEvaluationException.cs" />
+    <Compile Include="Engine\KeyCapturedEventArgs.cs" />
+    <Compile Include="Engine\KeyLogger.cs" />
+    <Compile Include="Engine\MacrosParseException.cs" />
+    <Compile Include="Forms\AddDateMacros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddDateMacros.Designer.cs">
+      <DependentUpon>AddDateMacros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddEnvironmentVariableMacros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddEnvironmentVariableMacros.Designer.cs">
+      <DependentUpon>AddEnvironmentVariableMacros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddInsertFileContentsMacros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddInsertFileContentsMacros.Designer.cs">
+      <DependentUpon>AddInsertFileContentsMacros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddPauseMacros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddPauseMacros.Designer.cs">
+      <DependentUpon>AddPauseMacros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddRandomNumberMacros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddRandomNumberMacros.Designer.cs">
+      <DependentUpon>AddRandomNumberMacros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddRandomStringMacros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddRandomStringMacros.Designer.cs">
+      <DependentUpon>AddRandomStringMacros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddShortcutKeys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddShortcutKeys.Designer.cs">
+      <DependentUpon>AddShortcutKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DebugTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DebugTools.Designer.cs">
+      <DependentUpon>DebugTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditAllowedDisallowedPrograms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditAllowedDisallowedPrograms.Designer.cs">
+      <DependentUpon>EditAllowedDisallowedPrograms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ErrorMessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ErrorMessageForm.Designer.cs">
+      <DependentUpon>ErrorMessageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Configuration\ConfigHelper.cs" />
+    <Compile Include="Helpers\Extensions\Common.cs" />
+    <Compile Include="Helpers\Extensions\Configuration.cs" />
+    <Compile Include="Helpers\GUIHelper.cs" />
+    <Compile Include="Helpers\RandomNumberGeneration.cs" />
+    <Compile Include="Helpers\Sender.cs" />
+    <Compile Include="Helpers\TextHelper.cs" />
+    <Compile Include="Helpers\WinAPI.cs" />
+    <Compile Include="Forms\HelpOnDateFormat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HelpOnDateFormat.Designer.cs">
+      <DependentUpon>HelpOnDateFormat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Configuration\AutotextRuleAbbreviation.cs" />
+    <Compile Include="Model\Configuration\AutotextRuleConfiguration.cs" />
+    <Compile Include="Model\Configuration\AutotextRuleMacrosMode.cs" />
+    <Compile Include="Model\Configuration\AutotextRuleSpecificProgram.cs" />
+    <Compile Include="Model\Configuration\AutotextRuleSpecificPrograms.cs" />
+    <Compile Include="Model\Configuration\AutotextRulesRoot.cs" />
+    <Compile Include="Model\Configuration\AutotextRuleTrigger.cs" />
+    <Compile Include="Model\Configuration\CommonConfiguration.cs" />
+    <Compile Include="Model\Configuration\KeycodeConfig.cs" />
+    <Compile Include="Model\Configuration\KeycodesConfiguration.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\LambdaEqualityComparer.cs" />
+    <Content Include="changelog.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configuration\AutotextRules.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configuration\CommonConfiguration.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configuration\Keycodes.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="favicon.ico" />
+    <Content Include="license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sender\bin\Sender.exe" />
+    <None Include="install.App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\Autotext_icon.ico" />
+    <None Include="Resources\Autotext_icon.png" />
+    <None Include="packages.config" />
+    <EmbeddedResource Include="Forms\AddDateMacros.resx">
+      <DependentUpon>AddDateMacros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddEnvironmentVariableMacros.resx">
+      <DependentUpon>AddEnvironmentVariableMacros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddInsertFileContentsMacros.resx">
+      <DependentUpon>AddInsertFileContentsMacros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddPauseMacros.resx">
+      <DependentUpon>AddPauseMacros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddRandomNumberMacros.resx">
+      <DependentUpon>AddRandomNumberMacros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddRandomStringMacros.resx">
+      <DependentUpon>AddRandomStringMacros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddShortcutKeys.resx">
+      <DependentUpon>AddShortcutKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DebugTools.resx">
+      <DependentUpon>DebugTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditAllowedDisallowedPrograms.resx">
+      <DependentUpon>EditAllowedDisallowedPrograms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ErrorMessageForm.resx">
+      <DependentUpon>ErrorMessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HelpOnDateFormat.resx">
+      <DependentUpon>HelpOnDateFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)Sender\bin\Sender.exe" "$(TargetDir)Sender.exe"* /s /d /y</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
