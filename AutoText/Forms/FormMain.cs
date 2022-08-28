@@ -1310,7 +1310,7 @@ namespace AutoText.Forms
 
 			btnCambioEspaniol.Hide();
 			btnCambioIngles.Show();
-			label2.Text = "Frase";
+			label2.Text = "Frases";
 			dataGridViewPhrases.Columns[1].HeaderText = "Descripcion";
 			fileToolStripMenuItem.Text = "Archivo";
 			closeToolStripMenuItem.Text = "Salir";
@@ -1335,22 +1335,22 @@ namespace AutoText.Forms
         {
 			btnCambioIngles.Hide();
 			btnCambioEspaniol.Show();
-			label2.Text = "Pharse";
-			dataGridViewPhrases.Columns[1].HeaderText = "Descripcion";
+			label2.Text = "Pharses";
+			dataGridViewPhrases.Columns[1].HeaderText = "Description";
 			fileToolStripMenuItem.Text = "File";
 			closeToolStripMenuItem.Text = "Extit";
 			toolsToolStripMenuItem1.Text = "Tools";
 			globalAllowedDisallowedProgramsListToolStripMenuItem.Text = "Global Allowed/Disallowed Programs List";
 			helpToolStripMenuItem.Text = "Help";
 			aboutToolStripMenuItem.Text = "About";
-			label3.Text = "Descripcion de frase";
+			label3.Text = "Pharse Description";
 			buttonAllowedDisallowedPrograms.Text = "Allowed/Disallowed Programs List";
-			label1.Text = "Frase modo macros";
+			label1.Text = "Pharse";
 			//	comboBoxProcessMacros.Items[0] = "Ejecutar";
 			//	comboBoxProcessMacros.Items[1] = "Saltar";
 			label4.Text = "Phrase content(right-click to insert macros)";
 			groupBoxTriggers.Text = "Pharse triggers";
-			label5.Text = "Pharse autotext";
+			label5.Text = "Pharse macros mode";
 			checkBoxAutotextCaseSensetive.Text = "Case Sensitive";
 			checkBoxSubstitute.Text = "Substitude by pharse";
 			buttonSavePhrase.Text = "Save";

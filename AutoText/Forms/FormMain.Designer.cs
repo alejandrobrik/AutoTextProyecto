@@ -303,7 +303,7 @@ namespace AutoText.Forms
             this.checkBoxAutotextCaseSensetive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxAutotextCaseSensetive.Location = new System.Drawing.Point(388, 86);
             this.checkBoxAutotextCaseSensetive.Name = "checkBoxAutotextCaseSensetive";
-            this.checkBoxAutotextCaseSensetive.Size = new System.Drawing.Size(130, 24);
+            this.checkBoxAutotextCaseSensetive.Size = new System.Drawing.Size(311, 24);
             this.checkBoxAutotextCaseSensetive.TabIndex = 13;
             this.checkBoxAutotextCaseSensetive.Text = "Case sensitive";
             this.checkBoxAutotextCaseSensetive.UseVisualStyleBackColor = true;
@@ -316,7 +316,7 @@ namespace AutoText.Forms
             this.checkBoxSubstitute.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxSubstitute.Location = new System.Drawing.Point(388, 116);
             this.checkBoxSubstitute.Name = "checkBoxSubstitute";
-            this.checkBoxSubstitute.Size = new System.Drawing.Size(174, 24);
+            this.checkBoxSubstitute.Size = new System.Drawing.Size(215, 24);
             this.checkBoxSubstitute.TabIndex = 20;
             this.checkBoxSubstitute.Text = "Substitute by phrase";
             this.checkBoxSubstitute.UseVisualStyleBackColor = true;
