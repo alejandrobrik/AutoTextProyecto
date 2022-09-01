@@ -390,6 +390,7 @@ namespace AutoText.Forms
             this.comboBoxProcessMacros.Name = "comboBoxProcessMacros";
             this.comboBoxProcessMacros.Size = new System.Drawing.Size(150, 28);
             this.comboBoxProcessMacros.TabIndex = 26;
+            this.comboBoxProcessMacros.SelectedIndexChanged += new System.EventHandler(this.comboBoxProcessMacros_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -484,7 +485,7 @@ namespace AutoText.Forms
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeToolStripMenuItem.Text = "Exit";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -522,7 +523,7 @@ namespace AutoText.Forms
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 

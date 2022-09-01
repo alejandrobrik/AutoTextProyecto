@@ -538,10 +538,19 @@ namespace AutoText.Forms
 		{
 			if (dataGridViewPhrases.RowCount > 0 && IsCurrentPhraseDirty())
 			{
-				DialogResult dl = MessageBox.Show(this, "Currently selected phrase has unsaved changes. Save changes?", "AutoText",
+				DialogResult dl;
+				if (btnCambioEspaniol.Visible)
+				{
+					 dl = MessageBox.Show(this, "Currently selected phrase has unsaved changes. Save changes?", "AutoText",
+						MessageBoxButtons.YesNoCancel,
+						MessageBoxIcon.Question);
+				}
+				else
+				{
+					 dl = MessageBox.Show(this, "La frase seleccionada actualmente tiene cambios sin guardar. Guardar cambios?", "AutoText",
 					MessageBoxButtons.YesNoCancel,
 					MessageBoxIcon.Question);
-
+				}
 				switch (dl)
 				{
 					case DialogResult.Cancel:
@@ -654,9 +663,19 @@ namespace AutoText.Forms
 			};
 
 			newConfig.RemoveAbbr = true;
-			newConfig.Phrase = "<phrase content>";
+			if (btnCambioEspaniol.Visible) {
+				newConfig.Phrase = "<phrase content>";
+				newConfig.Description = "<phrase description>";
+			}
+            else
+            {
+				newConfig.Phrase = "<Contenido de frase>";
+				newConfig.Description = "<Descripcion de frase>";
+
+			}
+			
 			newConfig.Macros = new AutotextRuleMacrosMode() { Mode = MacrosMode.Execute };
-			newConfig.Description = "<phrase description>";
+			
 			newConfig.SpecificPrograms = new AutotextRuleSpecificPrograms()
 			{
 				Programs = new List<AutotextRuleSpecificProgram>()
@@ -698,7 +717,19 @@ namespace AutoText.Forms
 		{
 			if (_rules.Any())
 			{
-				if (MessageBox.Show(this, "Are you sure that you want to delete selected phrase?", "AutoText", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+				String alertaBorrar;
+
+				if (btnCambioEspaniol.Visible)
+                {
+					alertaBorrar = "Are you sure that you want to delete selectd phrase";
+                }
+                else
+                {
+					alertaBorrar = "¿Estás seguro de que quieres eliminar la frase seleccionada?";
+
+				}
+
+				if (MessageBox.Show(this, alertaBorrar, "AutoText", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				{
 					_rulesBindingList.RemoveAt(_curSelectedPhraseIndex);
 
@@ -964,7 +995,15 @@ namespace AutoText.Forms
 
 			currentPhrase.RemoveAbbr = checkBoxSubstitute.Checked;
 			currentPhrase.Phrase = textBoxPhraseContent.Text;
-			currentPhrase.Macros = new AutotextRuleMacrosMode() { Mode = (MacrosMode)Enum.Parse(typeof(MacrosMode), comboBoxProcessMacros.SelectedItem.ToString()) };
+
+			string macrosModo;
+			if (comboBoxProcessMacros.SelectedItem.ToString() == "Ejecutar")
+				macrosModo = "Execute";
+			else
+				macrosModo = "Skip";
+
+
+			currentPhrase.Macros = new AutotextRuleMacrosMode() { Mode = (MacrosMode)Enum.Parse(typeof(MacrosMode), macrosModo) };
 			currentPhrase.Description = textBoxDescription.Text;
 			List<Panel> triggersPanels = groupBoxTriggers.Controls.Cast<Panel>().ToList();
 
@@ -1267,7 +1306,7 @@ namespace AutoText.Forms
 
 		private void buttonAllowedDisallowedPrograms_Click(object sender, EventArgs e)
 		{
-			EditAllowedDisallowedPrograms allowedDisallowedPrograms = new EditAllowedDisallowedPrograms(_rules[_curSelectedPhraseIndex].SpecificPrograms, ProgramsConfigSource.Phrase);
+			EditAllowedDisallowedPrograms allowedDisallowedPrograms = new EditAllowedDisallowedPrograms(_rules[_curSelectedPhraseIndex].SpecificPrograms, ProgramsConfigSource.Phrase, visible: btnCambioEspaniol.Visible);
 			allowedDisallowedPrograms.ShowDialog(this);
 		}
 
@@ -1281,7 +1320,7 @@ namespace AutoText.Forms
 
 		private void globalAllowedDisallowedProgramsListToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			EditAllowedDisallowedPrograms allowedDisallowedPrograms = new EditAllowedDisallowedPrograms(ConfigHelper.GetCommonConfiguration().SpecificPrograms, ProgramsConfigSource.Global);
+			EditAllowedDisallowedPrograms allowedDisallowedPrograms = new EditAllowedDisallowedPrograms(ConfigHelper.GetCommonConfiguration().SpecificPrograms, ProgramsConfigSource.Global, btnCambioEspaniol.Visible);
 			allowedDisallowedPrograms.ShowDialog(this);
 		}
 
@@ -1321,14 +1360,17 @@ namespace AutoText.Forms
 			label3.Text = "Descripcion de frase";
 			buttonAllowedDisallowedPrograms.Text = "Permitir/ Denegar Lista de Programas";
 			label1.Text = "Frase modo macros";
-			//	comboBoxProcessMacros.Items[0] = "Ejecutar";
-			//	comboBoxProcessMacros.Items[1] = "Saltar";
+			comboBoxProcessMacros.Items[0] = "Ejecutar";
+			comboBoxProcessMacros.Items[1] = "Saltar";
 			label4.Text = "Contenido de frases (click deerecho para insertar macros)";
 			groupBoxTriggers.Text = "Generar frase";
 			label5.Text = "Frase de autotext";
 			checkBoxAutotextCaseSensetive.Text = "Distinguir Mayúsculas/Minúsculas";
 			checkBoxSubstitute.Text = "Sustituir por frase";
 			buttonSavePhrase.Text = "Guardar";
+
+			//Permitir denegar progrmas
+
 		}
 
         private void btnCambioIngles_Click(object sender, EventArgs e)
@@ -1346,14 +1388,27 @@ namespace AutoText.Forms
 			label3.Text = "Pharse Description";
 			buttonAllowedDisallowedPrograms.Text = "Allowed/Disallowed Programs List";
 			label1.Text = "Pharse";
-			//	comboBoxProcessMacros.Items[0] = "Ejecutar";
-			//	comboBoxProcessMacros.Items[1] = "Saltar";
+			comboBoxProcessMacros.Items[0] = "Execute";
+			comboBoxProcessMacros.Items[1] = "Skip";
 			label4.Text = "Phrase content(right-click to insert macros)";
 			groupBoxTriggers.Text = "Pharse triggers";
 			label5.Text = "Pharse macros mode";
 			checkBoxAutotextCaseSensetive.Text = "Case Sensitive";
 			checkBoxSubstitute.Text = "Substitude by pharse";
 			buttonSavePhrase.Text = "Save";
+
+			//
+
 		}
+
+		public Boolean botonEsVsible()
+        {
+			return true;
+        }
+
+        private void comboBoxProcessMacros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
